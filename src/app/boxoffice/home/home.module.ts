@@ -9,7 +9,9 @@ import { MovieDetailComponent } from './movie-detail.component';
 import { MovieService } from './movie.service';
 
 @NgModule({
-    imports: [CommonModule, CarouselModule, DropdownModule, AlertModule, RouterModule],
+    imports: [CommonModule, 
+    CarouselModule, DropdownModule, AlertModule, 
+    RouterModule],
     declarations: [MovieListComponent, MovieDetailComponent],
     providers: [MovieService],
     exports: [MovieListComponent, MovieDetailComponent]

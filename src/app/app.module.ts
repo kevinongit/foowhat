@@ -30,6 +30,7 @@ import { DataService } from './services/data.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    BoxofficeModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
