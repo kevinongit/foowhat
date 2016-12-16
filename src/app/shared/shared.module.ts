@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NameListService } from './name-list/index';
 import { TopNavComponent, SidebarComponent } from './index';
+import { ToastComponent } from './toast/toast.component'
 
 /**
 * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -12,8 +13,8 @@ import { TopNavComponent, SidebarComponent } from './index';
 
 @NgModule({
     imports: [CommonModule, RouterModule],
-    declarations: [TopNavComponent, SidebarComponent],
-    exports: [CommonModule, FormsModule, RouterModule, TopNavComponent, SidebarComponent]
+    declarations: [TopNavComponent, SidebarComponent, ToastComponent],
+    exports: [CommonModule, FormsModule, RouterModule, TopNavComponent, SidebarComponent, ToastComponent]
 })
 
 export class SharedModule {

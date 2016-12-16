@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module'
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 import { AboutComponent } from './about/about.component'
+import { ToastComponent } from './shared/toast/toast.component'
 import { DataService } from './services/data.service';
 
 
@@ -35,7 +36,8 @@ import { DataService } from './services/data.service';
     RouterModule.forRoot(routes)
   ],
   providers: [
-    DataService
+    DataService,
+    ToastComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
