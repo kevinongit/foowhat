@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { HomeRoutes } from './home/index';
+import { HomeRoutes } from './home/home.routes';
 
 
 import { BoxofficeComponent } from './index';

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router'
 
-import { BoxofficeRoutes } from './boxoffice/index'
+import { BoxofficeRoutes } from './boxoffice/boxoffice.routes'
 import { HomeComponent } from './home/home.component'
 import { AboutComponent } from './about/about.component'
 
