@@ -6,8 +6,10 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { BoxofficeComponent } from './boxoffice.component';
-import { HomeModule } from './home/home.module';
+import { BoxofficeComponent } from './boxoffice.component'
+import { MovieListComponent } from './movie-list.component'
+import { MovieDetailComponent } from './movie-detail.component'
+import { MovieService } from './services/movie.service'
 
 import {TopNavComponent, SidebarComponent } from '../shared/index';
 
@@ -19,10 +21,10 @@ import {TopNavComponent, SidebarComponent } from '../shared/index';
     	DropdownModule,
         ModalModule,
         SharedModule,
-        HomeModule
     ],
-    declarations: [BoxofficeComponent],
-    exports: [BoxofficeComponent]
+    declarations: [ BoxofficeComponent, MovieListComponent, MovieDetailComponent ],
+    providers: [ MovieService ],
+    exports: [ BoxofficeComponent, MovieListComponent, MovieDetailComponent ]
 })
 
 export class BoxofficeModule { }

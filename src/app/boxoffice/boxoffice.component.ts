@@ -1,13 +1,36 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { OnInit } from '@angular/core'
 
-/**
-*	This class represents the lazy loaded BoxofficeComponent.
-*/
+import { MovieService } from './services/movie.service'
 
 @Component({
-	// moduleId: module.id,
 	selector: 'boxoffice-cmp',
 	templateUrl: './boxoffice.component.html'
 })
+export class BoxofficeComponent implements OnInit {
+	movies : any[];
+    movieDetail: any = null;
 
-export class BoxofficeComponent { }
+	constructor(
+		private movieService : MovieService) {
+			console.log('MovieListcomponent');
+	}
+
+	ngOnInit(): void {
+		this.getMovies();
+	}
+
+	getMovies(): void {
+		this.movieService.getMovies().subscribe(boxInfo => {
+				 	console.log('in subscribe');
+				 	this.movies = boxInfo.movies;
+				 	console.log('movies.length = ' + this.movies.length);
+				 });
+		console.log('in getMovies()');
+	}
+
+    onSelectMovie(movie: any) {
+        this.movieDetail = this.movieService.getOneMovie(movie.rank);
+		console.log('Movie Detail : ' + JSON.stringify(this.movieDetail));
+    }
+ }
