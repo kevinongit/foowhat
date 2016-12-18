@@ -2,13 +2,13 @@
 <sidebar-cmp></sidebar-cmp>-->
 <section class="main-container" [ngClass]="{sidebarPushRight: isActive}">
 	<div class="container">
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 			<movie-list 
 				[movies]="movies"
 				(selectMovie)="onSelectMovie($event)">
 			</movie-list>
 		</div>
-		<div class="col-sm-6" *ngIf="movieDetail">
+		<div class="col-sm-8" *ngIf="movieDetail">
 			<movie-detail [movieDetail]="movieDetail">
 			</movie-detail>
 		</div>
