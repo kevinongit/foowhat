@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
 	selector: 'movie-detail',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: './movie-detail.component.html'
 })
 export class MovieDetailComponent {
