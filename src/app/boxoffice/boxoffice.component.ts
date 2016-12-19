@@ -28,14 +28,11 @@ export class BoxofficeComponent implements OnInit {
 	}
 
 	getMovies(): void {
-		this.movieService.getMovies().subscribe(boxInfo => {
-			console.log('in subscribe');
-			this.store.dispatch({ type: BoxofficeActions.BOXOFFICE_UPDATE_MOVIE_LIST, payload: boxInfo.movies});
-		});
+		this.store.dispatch({ type: BoxofficeActions.BOXOFFICE_UPDATE_MOVIE_LIST, payload: null});
 		console.log('in getMovies()');
 	}
 
     onSelectMovie(movie: any) {
-		this.store.dispatch({type: BoxofficeActions.BOXOFFICE_SELECT_MOVIE, payload: this.movieService.getOneMovie(movie.rank) });
+		this.store.dispatch({type: BoxofficeActions.BOXOFFICE_SELECT_MOVIE, payload: movie });
     }
  }

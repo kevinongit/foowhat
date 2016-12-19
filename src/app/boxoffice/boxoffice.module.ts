@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
 
 import { boxofficeReducer } from './reducers/boxoffice.reducer'
+import { BoxofficeEffects } from './effects/boxoffice.effects'
 import { BoxofficeComponent } from './boxoffice.component'
 import { MovieListComponent } from './movie-list.component'
 import { MovieDetailComponent } from './movie-detail.component'
@@ -25,7 +27,8 @@ import {TopNavComponent, SidebarComponent } from '../shared/index';
         SharedModule,
         StoreModule.provideStore({
             boxoffice: boxofficeReducer
-        })
+        }),
+        EffectsModule.run(BoxofficeEffects)
     ],
     declarations: [ BoxofficeComponent, MovieListComponent, MovieDetailComponent ],
     providers: [ MovieService ],
