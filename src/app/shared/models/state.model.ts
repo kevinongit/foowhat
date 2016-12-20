@@ -1,5 +1,7 @@
 import { BoxofficeState } from '../../boxoffice/reducers/boxoffice.reducer'
+import { TransactionState } from '../../transaction/reducers/transaction.reducer'
 
 export interface State {
-    boxoffice: BoxofficeState
+    boxoffice: BoxofficeState,
+    transaction: TransactionState
 }

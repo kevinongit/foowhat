@@ -3,9 +3,18 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects'
+
+import { boxofficeReducer } from './boxoffice/reducers/boxoffice.reducer'
+import { BoxofficeEffects } from './boxoffice/effects/boxoffice.effects'
+import { transactionReducer } from './transaction/reducers/transaction.reducer'
+import { TransactionEffects } from './transaction/effects/transaction.effects'
 
 import { routes } from './app.routes'
 import { BoxofficeModule } from './boxoffice/boxoffice.module'
+import { TransactionModule } from './transaction/transaction.module'
 import { SharedModule } from './shared/shared.module'
 
 import { AppComponent } from './app.component'
@@ -32,6 +41,16 @@ import { DataService } from './services/data.service';
     ReactiveFormsModule,
     HttpModule,
     BoxofficeModule,
+    TransactionModule,
+
+    StoreModule.provideStore({
+        boxoffice: boxofficeReducer,
+        transaction: transactionReducer
+    }),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(BoxofficeEffects),
+    EffectsModule.run(TransactionEffects),
+
     SharedModule.forRoot(),
     RouterModule.forRoot(routes)
   ],

@@ -19,7 +19,7 @@ export class BoxofficeComponent implements OnInit {
 		private movieService : MovieService,
 		private store: Store<State>
 		) {
-			console.log('MovieListcomponent');
+			console.log('BoxofficeComponent');
 	}
 
 	ngOnInit(): void {

@@ -9,12 +9,11 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { boxofficeReducer } from './reducers/boxoffice.reducer'
-import { BoxofficeEffects } from './effects/boxoffice.effects'
-import { BoxofficeComponent } from './boxoffice.component'
-import { MovieListComponent } from './movie-list.component'
-import { MovieDetailComponent } from './movie-detail.component'
-import { MovieService } from './services/movie.service'
+import { transactionReducer } from './reducers/transaction.reducer'
+import { TransactionEffects } from './effects/transaction.effects'
+import { TransactionComponent } from './transaction.component'
+import { TransactionService } from './services/transaction.service'
+import { TransactionListComponent } from './transaction-list.component'
 
 import {TopNavComponent, SidebarComponent } from '../shared/index';
 
@@ -27,14 +26,14 @@ import {TopNavComponent, SidebarComponent } from '../shared/index';
         ModalModule,
         SharedModule,
         // StoreModule.provideStore({
-        //     boxoffice: boxofficeReducer
+        //     transaction: transactionReducer
         // }),
         // StoreDevtoolsModule.instrumentOnlyWithExtension(),
-        // EffectsModule.run(BoxofficeEffects)
+        // EffectsModule.run(TransactionEffects)
     ],
-    declarations: [ BoxofficeComponent, MovieListComponent, MovieDetailComponent ],
-    providers: [ MovieService ],
-    exports: [ BoxofficeComponent, MovieListComponent, MovieDetailComponent ]
+    declarations: [ TransactionComponent, TransactionListComponent ],
+    providers: [ TransactionService ],
+    exports: [ TransactionComponent, TransactionListComponent ]
 })
 
-export class BoxofficeModule { }
+export class TransactionModule { }
