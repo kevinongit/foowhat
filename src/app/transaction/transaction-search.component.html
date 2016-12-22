@@ -1,0 +1,7 @@
+<div class="wrapper">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <input formControlName="msisdn" placeholder="MSISDN" />
+        <input formControlName="tid" placeholder="TID" />
+        <input formControlName="state" placeholder="STATE" />
+    </form>
+</div>
