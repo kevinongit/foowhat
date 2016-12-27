@@ -15,9 +15,18 @@ export class TransactionService {
 	constructor(private http: Http) {
 	}
 
-	getTransactions() : Observable<any> {
+	getTransactions(searchData) : Observable<any> {
 		console.log('getTransactions()');
-		return Observable.of(TRANSACTION_LIST);
+		var transList: any;
+		
+		transList.columns = TRANSACTION_LIST.columns.slice();
+		transList.rows = TRANSACTION_LIST.rows.filter(function(item) {
+			// for msisdn
+			return item[0] === searchData.msisdn;
+		});
+		console.log('transList.rows.length = ' + transList.rows.length);
+
+		return Observable.of(transList);
 	}
 
 	getOneTransaction(rank:string) : any {

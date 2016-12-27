@@ -23,8 +23,8 @@ export class TransactionSearchComponent {
             msisdn: '',
             target: '',
             tid: '',
-            state: yesterday,
-            dp: today,
+            state: '',
+            dp: yesterday,
             endDate: today
         });
     }

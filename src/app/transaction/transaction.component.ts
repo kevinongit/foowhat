@@ -24,12 +24,13 @@ export class TransactionComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.transactionModel$ = this.store.select<TransactionState>('transaction');
-		this.store.dispatch({ type: TransactionActions.TRANSACTION_UPDATE_TRANSACTION, payload: null});
-		console.log('in ngOnInit()');
+		
 	}
 
 	onSearch(searchData) {
 		console.log('searchData : ' + JSON.stringify(searchData.values));
+		this.store.dispatch({ type: TransactionActions.TRANSACTION_UPDATE_TRANSACTION, payload: searchData.values});
+		console.log('onSearch() after dispatch');
 	}
 
     onSelectTransaction(tid: string) {

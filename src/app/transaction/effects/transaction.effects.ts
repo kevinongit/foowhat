@@ -15,7 +15,7 @@ export class TransactionEffects {
 
     @Effect() updateTransaction$ = this.actions$
         .ofType(TransactionActions.TRANSACTION_UPDATE_TRANSACTION)
-        .switchMap(() => this.transactionService.getTransactions()
+        .switchMap(action => this.transactionService.getTransactions(action.payload)
             .map(transactions => ({type: TransactionActions.TRANSACTION_UPDATE_TRANSACTION_SUCCESS, payload: transactions}))
             .catch(error => Observable.of({type: TransactionActions.TRANSACTION_UPDATE_TRANSACTION_FAIL, payload: error }))
         );
