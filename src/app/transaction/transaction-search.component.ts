@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { CalendarModule } from 'primeng/primeng'
 
 @Component({
     selector: 'transaction-search',
@@ -13,21 +14,29 @@ export class TransactionSearchComponent {
 
     constructor(private formBuilder: FormBuilder) {}
 
-    ngOnInit(): void {
+    ngOnInit() {
+        let today:Date = new Date();
+        let yesterday: Date = new Date();
+    
+        yesterday.setDate(today.getDate() - 1);
         this.searchForm = this.formBuilder.group({
             msisdn: '',
+            target: '',
             tid: '',
-            state: ''
+            state: yesterday,
+            dp: today,
+            endDate: today
         });
     }
 
     onSearch() {
+        
         if ( !this.searchForm ) return;
+        console.log("onSearch()");
+        console.log(this.searchForm.value);
         this.doSearch.emit({
-            'msisdn': this.searchForm.value.msisdn,
-            'tid': this.searchForm.value.tid,
-            'state': this.searchForm.value.state
+            'values': this.searchForm.value
         });
-        this.searchForm.reset();
+        // this.searchForm.reset();
     }
 }

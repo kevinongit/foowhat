@@ -1,5 +1,6 @@
 
-<transaction-search>
+<transaction-search
+    (doSearch)="onSearch($event)">
 </transaction-search>
 <transaction-list
     [data]="(transactionModel$ | async)?.transaction"

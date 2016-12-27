@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { boxofficeReducer } from './boxoffice/reducers/boxoffice.reducer'
 import { BoxofficeEffects } from './boxoffice/effects/boxoffice.effects'
@@ -43,6 +44,7 @@ import { DataService } from './services/data.service';
     BoxofficeModule,
     TransactionModule,
 
+    NgbModule.forRoot(),
     StoreModule.provideStore({
         boxoffice: boxofficeReducer,
         transaction: transactionReducer

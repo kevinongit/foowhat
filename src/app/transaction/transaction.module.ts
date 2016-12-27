@@ -7,6 +7,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap'
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap'
+// import { DatepickerModule } from 'ng2-bootstrap/components/datepicker'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { CalendarModule } from 'primeng/primeng'
 
 import { SharedModule } from '../shared/shared.module'
 
@@ -17,7 +20,7 @@ import { TransactionService } from './services/transaction.service'
 import { TransactionListComponent } from './transaction-list.component'
 import { TransactionSearchComponent } from './transaction-search.component'
 
-import {TopNavComponent, SidebarComponent } from '../shared/index';
+import {TopNavComponent, SidebarComponent } from '../shared/index'
 
 
 @NgModule({
@@ -28,6 +31,9 @@ import {TopNavComponent, SidebarComponent } from '../shared/index';
         ReactiveFormsModule,
     	DropdownModule,
         ModalModule,
+        // DatepickerModule,
+        NgbModule,
+        CalendarModule,
         SharedModule,
         // StoreModule.provideStore({
         //     transaction: transactionReducer
