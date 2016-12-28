@@ -8,8 +8,6 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use('/', express.static(__dirname + '/../../dist'));
 
-app.use('/api/movies', require('./api/movie'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

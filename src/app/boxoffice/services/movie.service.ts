@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
@@ -21,12 +21,17 @@ export class MovieService {
 	}
 
 	getMovies() : Observable<any> {
-		console.log(' >>> : ' + MOVIE_LIST.date);
-		return Observable.of(MOVIE_LIST.movies);
-		// return new Observable<any> (() => {
-		// 	setTimeout(() => {MOVIE_LIST;}, 500)
-		// });
+		return this.http.get(this.moviesUrl)
+			.map(res => res.json());
 	}
+
+	// getMovies() : Observable<any> {
+	// 	console.log(' >>> : ' + MOVIE_LIST.date);
+	// 	return Observable.of(MOVIE_LIST.movies);
+	// 	// return new Observable<any> (() => {
+	// 	// 	setTimeout(() => {MOVIE_LIST;}, 500)
+	// 	// });
+	// }
 
 	getOneMovie(rank:string) : any {
 		let movies = MOVIE_LIST.movies;
