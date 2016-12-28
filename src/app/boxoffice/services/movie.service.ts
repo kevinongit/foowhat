@@ -11,6 +11,7 @@ import { MOVIE_LIST } from './mock-movie';
 export class MovieService {
 	private moviesUrl = 'api/movies';
 	private headers = new Headers({'Content-Type' : 'application/json'});
+	movieList: any = null;
 	// movieList : Movie[] = [];
 	// private url = 'http://localhost:9000/api/movies';
 
@@ -21,10 +22,16 @@ export class MovieService {
 	}
 
 	getMovies() : Observable<any> {
-		return this.http.get(this.moviesUrl)
-			.map(res => res.json());
+		this.http.get(this.moviesUrl)
+			.map(res => this.movieList = res.json().movies);
+			HHHHHHHH
+		return Observable.of(this.movieList);
 	}
 
+	getOneMovie(rank: string) : Observable<any> {
+		console.log('service: getMovieDetail');
+		return Observable.of(this.movieList.filter(item => item.rank === rank)[0]);
+	}
 	// getMovies() : Observable<any> {
 	// 	console.log(' >>> : ' + MOVIE_LIST.date);
 	// 	return Observable.of(MOVIE_LIST.movies);
@@ -33,14 +40,14 @@ export class MovieService {
 	// 	// });
 	// }
 
-	getOneMovie(rank:string) : any {
-		let movies = MOVIE_LIST.movies;
+	// getOneMovie(rank:string) : any {
+	// 	let movies = MOVIE_LIST.movies;
 		
-		return Observable.of(movies.filter(item => item.rank === rank)[0]);
-		// return this.getMovies().subscribe(movieList => {
-		// 	let arr : Array<any> =  (movieList.movies) as Array<any>;
-		// 	arr.filter(item => item.rank === rank);});
-	}
+	// 	return Observable.of(movies.filter(item => item.rank === rank)[0]);
+	// 	// return this.getMovies().subscribe(movieList => {
+	// 	// 	let arr : Array<any> =  (movieList.movies) as Array<any>;
+	// 	// 	arr.filter(item => item.rank === rank);});
+	// }
 
 	private handleError(error: any): Promise<any> {
 		console.error('An error occurred', error);
