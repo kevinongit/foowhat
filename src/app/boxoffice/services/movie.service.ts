@@ -11,7 +11,7 @@ import { MOVIE_LIST } from './mock-movie';
 export class MovieService {
 	private moviesUrl = 'api/movies';
 	private headers = new Headers({'Content-Type' : 'application/json'});
-	movieList: any = null;
+	movieList;
 	// movieList : Movie[] = [];
 	// private url = 'http://localhost:9000/api/movies';
 
@@ -22,15 +22,16 @@ export class MovieService {
 	}
 
 	getMovies() : Observable<any> {
-		this.http.get(this.moviesUrl)
-			.map(res => this.movieList = res.json().movies);
-			HHHHHHHH
-		return Observable.of(this.movieList);
+		this.movieList = this.http.get(this.moviesUrl)
+			.map(res => res.json().movies);
+
+		return this.movieList;
 	}
 
 	getOneMovie(rank: string) : Observable<any> {
-		console.log('service: getMovieDetail');
-		return Observable.of(this.movieList.filter(item => item.rank === rank)[0]);
+		console.log('service: getMovieDetail rank = ' + rank);
+		return this.movieList.filter(item => item.rank === rank)[0];
+		// return Observable.of(this.movieList.subscribe(list => list.filter(item => item.rank === rank)[0]));
 	}
 	// getMovies() : Observable<any> {
 	// 	console.log(' >>> : ' + MOVIE_LIST.date);
