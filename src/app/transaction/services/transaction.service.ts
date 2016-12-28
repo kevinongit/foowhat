@@ -23,7 +23,7 @@ export class TransactionService {
 		if (searchData && searchData.msisdn && searchData.msisdn.length > 0) {
 			rows = TRANSACTION_LIST.rows.filter(function (item) {
 				// for msisdn
-				return item[0] === searchData.msisdn;
+				return item[0].startsWith(searchData.msisdn);
 			});
 		} else {
 			rows = TRANSACTION_LIST.rows;
