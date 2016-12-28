@@ -17,13 +17,22 @@ export class TransactionService {
 
 	getTransactions(searchData) : Observable<any> {
 		console.log('getTransactions()');
-		var transList: any = {
-			columns : TRANSACTION_LIST.columns,
-			rows: TRANSACTION_LIST.rows.filter(function(item) {
-					// for msisdn
-					return item[0] === searchData.msisdn;
-				})
-		};
+		let rows;
+		var transList;
+
+		if (searchData && searchData.msisdn && searchData.msisdn.length > 0) {
+			rows = TRANSACTION_LIST.rows.filter(function (item) {
+				// for msisdn
+				return item[0] === searchData.msisdn;
+			});
+		} else {
+			rows = TRANSACTION_LIST.rows;
+		}
+
+		transList = {
+			columns: TRANSACTION_LIST.columns,
+			rows: rows
+		}
 		
 		// *below approach : app crash
 		// transList.columns = TRANSACTION_LIST.columns;
