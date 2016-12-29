@@ -22,15 +22,23 @@ export class MovieService {
 	}
 
 	getMovies() : Observable<any> {
-		this.movieList = this.http.get(this.moviesUrl)
-			.map(res => res.json().movies);
+		return this.http.get(this.moviesUrl)
+			.map(resp => {
+				this.movieList = resp.json().movies;
+				return resp.json().movies;	
+			});
 
-		return this.movieList;
+
+			// .map(res => res.json().movies)
+			// .subscribe(movies => this.movieList = movies.slice());
+
+		// return Observable.of(this.movieList);
 	}
 
 	getOneMovie(rank: string) : Observable<any> {
 		console.log('service: getMovieDetail rank = ' + rank);
-		return this.movieList.filter(item => item.rank === rank)[0];
+		console.log('movieList.length = ' + this.movieList.length);
+		return Observable.of(this.movieList.filter(item => item.rank === rank)[0]);
 		// return Observable.of(this.movieList.subscribe(list => list.filter(item => item.rank === rank)[0]));
 	}
 	// getMovies() : Observable<any> {

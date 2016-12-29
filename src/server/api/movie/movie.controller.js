@@ -7,15 +7,15 @@
  * DELETE  /api/movies/:id          ->  destroy
  */
 
- 'use strict';
+'use strict';
 
- import _ from 'lodash';
- import Movie from './movie.model';
- import getmovie from './build-movie-info';
+import _ from 'lodash';
+import Movie from './movie.model';
+import getmovie from './build-movie-info';
 
- function respondWithResult(res, statusCode) {
+function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  return function(entity) {
+  return function (entity) {
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -23,28 +23,28 @@
 }
 
 function saveUpdates(updates) {
-  return function(entity) {
+  return function (entity) {
     var updated = _.merge(entity, updates);
     return updated.save()
-    .then(updated => {
-      return updated;
-    });
+      .then(updated => {
+        return updated;
+      });
   };
 }
 
 function removeEntity(res) {
-  return function(entity) {
+  return function (entity) {
     if (entity) {
       return entity.remove()
-      .then(() => {
-        res.status(204).end();
-      });
+        .then(() => {
+          res.status(204).end();
+        });
     }
   };
 }
 
 function handleEntityNotFound(res) {
-  return function(entity) {
+  return function (entity) {
     if (!entity) {
       res.status(404).end();
       return null;
@@ -55,7 +55,7 @@ function handleEntityNotFound(res) {
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
-  return function(err) {
+  return function (err) {
     res.status(statusCode).send(err);
   };
 }
@@ -64,17 +64,19 @@ function handleError(res, statusCode) {
 export function index(req, res) {
   console.log('here index()');
   getmovie.getRemoteMovieInfo()
-      .then(function(list) {
+    .then(function (list) {
+      if (0) {
         var fs = require('fs');
         var filename = './boxoffice.json';
         // console.log('*********list = ' + JSON.stringify(list));
         fs.writeFile(filename, JSON.stringify(list), function (err) {
-          if (err) { console.log('error : ' + err);}
+          if (err) { console.log('error : ' + err); }
           console.log('file created : ' + filename);
         });
-        res.send(list);
-      })
-      .catch(handleError(res));
+      }
+      res.send(list);
+    })
+    .catch(handleError(res));
 }
 // export function index(req, res) {
 //   console.log('here index()');
@@ -91,20 +93,20 @@ export function index(req, res) {
 export function show(req, res) {
   console.log('show() req.params.id = ' + req.params.id);
 
-  getmovie.getMovieInfoByName(req.params.id).then(function(data) {
+  getmovie.getMovieInfoByName(req.params.id).then(function (data) {
     console.log('inside show - then');
     getmovie.prettify2(data);
     res.send(data);
     console.log('res sent!')
   })
-  .catch(handleError(res));
+    .catch(handleError(res));
 }
 
 // Creates a new Movie in the DB
 export function create(req, res) {
   return Movie.create(req.body)
-  .then(respondWithResult(res, 201))
-  .catch(handleError(res));
+    .then(respondWithResult(res, 201))
+    .catch(handleError(res));
 }
 
 // Updates an existing Movie in the DB
@@ -113,16 +115,16 @@ export function update(req, res) {
     delete req.body._id;
   }
   return Movie.findById(req.params.id).exec()
-  .then(handleEntityNotFound(res))
-  .then(saveUpdates(req.body))
-  .then(respondWithResult(res))
-  .catch(handleError(res));
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
 // Deletes a Movie from the DB
 export function destroy(req, res) {
   return Movie.findById(req.params.id).exec()
-  .then(handleEntityNotFound(res))
-  .then(removeEntity(res))
-  .catch(handleError(res));
+    .then(handleEntityNotFound(res))
+    .then(removeEntity(res))
+    .catch(handleError(res));
 }
