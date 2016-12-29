@@ -1,7 +1,7 @@
 <!--<top-nav></top-nav>
 <sidebar-cmp></sidebar-cmp>-->
-<section class="main-container" [ngClass]="{sidebarPushRight: isActive}">
-	<div class="container">
+<!--<section class="main-container" [ngClass]="{sidebarPushRight: isActive}">
+	<div class="container">-->
 		<div class="col-sm-4">
 			<movie-list 
 				[movies]="(boxofficeModel$ | async)?.movies"
@@ -12,5 +12,5 @@
 			<movie-detail [movieDetail]="(boxofficeModel$ | async)?.selectedMovie">
 			</movie-detail>
 		</div>
-	</div>
-</section>
+	<!--</div>
+</section>-->

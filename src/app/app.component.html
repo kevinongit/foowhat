@@ -8,9 +8,17 @@
       <a routerLink="/about" class="nav-item nav-link" routerLinkActive="active">
         <i class="fa fa-info-circle"></i> About
       </a>
-       <a routerLink="/boxoffice" class="nav-item nav-link" routerLinkActive="active">
-        <i class="fa fa-film"></i> Boxoffice
-      </a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Movies </a>
+        <div class="dropdown-menu">
+          <a routerLink="/boxoffice" class="dropdown-item" routerLinkActive="active">
+            <i class="fa fa-film"></i> Boxoffice
+          </a>
+          <a routerLink="/" class="dropdown-item disabled" routerLinkActive="active">
+            <i class="fa fa-search"></i> FindMovie
+          </a>
+        </div>
+      </li>
       <a routerLink="/transaction" class="nav-item nav-link" routerLinkActive="active">
         <i class="fa fa-film"></i> Transaction
       </a>
