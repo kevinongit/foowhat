@@ -5,8 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
-import { DragulaModule, DragulaService } from 'ng2-dragula/ng2-dragula'
-// import { SharedModule } from '../shared/shared.module'
+import { DndModule } from 'ng2-dnd'
 
 
 import { DragComponent } from './drag.component'
@@ -18,11 +17,11 @@ import { DragComponent } from './drag.component'
     	RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        DragulaModule
+        DndModule.forRoot()
  
     ],
     declarations: [ DragComponent ],
-    providers: [ DragulaService ],
+    providers: [  ],
     exports: [ DragComponent ]
 })
 

@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 
 
+
 @Component({
 	selector: 'drag-cmp',
-	templateUrl: './drag.component.html'
+	templateUrl: './drag.component.html',
+	styleUrls: [ './drag.component.css' ]
 })
-export class DragComponent implements OnInit {
+export class DragComponent {
+	transferData:Object = {id:1, msg:'Hello World!'};
+	transferData2:Object = { id:2, msg:'Hi There' };
+	receivedData:Array<any> = [];
 
-	constructor(
+	constructor() { }
 
-		) {
-			console.log('DragComponent');
-	}
-
-	ngOnInit(): void {
-		
+	transferDataSuccess($event) {
+		this.receivedData.push($event.dragData);
 	}
 
 
