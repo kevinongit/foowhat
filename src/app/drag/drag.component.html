@@ -1,63 +1,28 @@
-<!--<div class="container">
-  <div>
-    <h4>Transfer custom data in Drag-and-Drop</h4>
-    -->
-    <div class="row">
-      <div class="col-sm-6">
-      <div class="card" style="width: 20rem;">
-        <div class="card-block">
-          <h4  class="card-title"> Available Channels. </h4>
-          <p class="card-text"> Available to drag. This is a sort of data repo. you can select and build a new channel list. </p>
-        </div>
-        <!--<div class-"card-block">-->
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-              <div> Drag Me </div>
-              <div> {{ transferData | json }} </div>
-            </li>
-            <li class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="transferData2">
-              <div> Drag Me2 </div>
-              <div> {{ transferData2 | json }} </div>
-            </li>
-          </ul>
-        <!--</div>-->
+<div class="row">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title"> Available Channels. </h4>
+        <p class="card-text"> Available to drag. This is a sort of data repo. you can select and build a new channel list. </p>
       </div>
-      </div>
-
-      <div class="col-sm-6">
-      <div class="card" stype="width: 20rem;">
-        <div dnd-droppable class="card-block" (onDropSuccess)="transferDataSuccess($event)">
-          <h4 class="card-title"> Here </h4>
-          <p class="card-text"> drop here! </p>
-        </div>
-        <ul class="list-group list-group-flush" [hidden]="!receivedData.length > 0">
-          <li class="list-group-item" *ngFor="let data of receivedData"> {{ data | json }} </li>
-        </ul>
-      </div>
-      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+          Drag Me {{ transferData | json }}
+        </li>
+        <li class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="transferData2">
+          Drag Me2 {{ transferData2 | json }}
+        </li>
+      </ul>
     </div>
 
-      <!--<div class="col-sm-3">
-        <div class="card card-success">
-          <div class="card-header">Available to drag</div>
-          <div class="card-block">
-            <div class="card" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-              <div class="card-body">
-                <div>Drag Me</div>
-                <div>{{transferData | json}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="card" dnd-droppable  (onDropSuccess)="transferDataSuccess($event)">
+      <div class="card-block">
+        <h4 class="card-title"> Here </h4>
+        <p class="card-text"> drop here! </p>
       </div>
-      <div class="col-sm-3">
-        <div dnd-droppable class="card card-info" (onDropSuccess)="transferDataSuccess($event)">
-          <div class="card-header">Place to drop (Items:{{receivedData.length}})</div>
-          <div class="card-block">
-            <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data | json}}</div>
-          </div>
-        </div>
-      </div>
+      <ul class="list-group list-group-flush" [hidden]="!receivedData.length > 0">
+        <li class="list-group-item" *ngFor="let data of receivedData"> {{ data | json }} </li>
+      </ul>
     </div>
   </div>
-</div>-->
+</div>
